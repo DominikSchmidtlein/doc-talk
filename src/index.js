@@ -1,8 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import { browserHistory } from 'react-router';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import Routes from './routes';
+import registerServiceWorker from './utils/registerServiceWorker';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+ReactDOM.render(
+  <Routes history={browserHistory} />,
+  document.getElementById('root')
+);
+
 registerServiceWorker();
