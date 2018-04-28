@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Card, CardBody, CardHeader, CardText, Collapse } from 'reactstrap';
+import { Badge, Button, Card, CardBody, CardHeader, CardText, Collapse } from 'reactstrap';
 
 
 class Posts extends Component {
@@ -13,11 +13,8 @@ class Posts extends Component {
 
   toggle = (key) => {
     var old = {...this.state.collapse};
-    console.log(old);
     old[key] = !old[key];
-    console.log(old);
     this.setState({ collapse: old }, () => console.log(this.state.collapse));
-    console.log(key);
   }
 
   render() {
@@ -45,13 +42,14 @@ class Posts extends Component {
               let old = {..._this.state.collapse};
               old[key] = true;
               _this.state.collapse = old;
+              let tags = posts[key].tags;
               return (
                 <div key={key}>
                   <Card>
                     <CardHeader onClick={ (e) => _this.toggle(key) }>
-                      <h3>
-                        Header
-                      </h3>
+                      {tags.map(function(keyTag, i) {
+                        return (<h7 key={i}><Badge color="secondary">{keyTag}</Badge>&nbsp;</h7>)
+                      })}
                     </CardHeader>
                     <Collapse isOpen={_this.state.collapse[key]}>
                       <CardBody>
