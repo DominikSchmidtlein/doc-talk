@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
+import { Button, Card, CardBody, CardHeader, CardText, Collapse } from 'reactstrap';
+
 
 class Posts extends Component {
-  handleUpvote = (post, key) => {
-    this.props.firebase.ref('posts/' + key).set({
-      title: post.title,
-      upvote: post.upvote + 1,
-      downvote: post.downvote
-    });
+  constructor() {
+    super();
+    // this.state = { collapse: false };
+    this.toggle = this.toggle.bind(this);
   }
 
-  handleDownvote = (post, key) => {
-    this.props.firebase.ref('posts/' + key).set({
-      title: post.title,
-      upvote: post.upvote,
-      downvote: post.downvote + 1
-    });
+  state = { collapse: {} };
+
+  toggle = (key) => {
+    var old = {...this.state.collapse};
+    console.log(old);
+    old[key] = !old[key];
+    console.log(old);
+    this.setState({ collapse: old }, () => console.log(this.state.collapse));
+    console.log(key);
   }
 
   render() {
@@ -35,33 +38,27 @@ class Posts extends Component {
 
     return (
       <div className="container">
+          <Button color="primary" href="/add-post">New Post</Button>
         <div className="Posts">
+          <br/>
           { Object.keys(posts).map(function(key) {
+              let old = {..._this.state.collapse};
+              old[key] = true;
+              _this.state.collapse = old;
               return (
                 <div key={key}>
-                  <div className="card">
-                    <div className="card-body">
-                      <div>Title: { posts[key].title }</div>
-                      <div>Upvotes: { posts[key].upvote }</div>
-                      <div>Downvotes: { posts[key].downvote }</div>
-                      <div>
-                        <button
-                          className="btn" 
-                          onClick={ _this.handleUpvote.bind(this, posts[key], key) }
-                          type="button"
-                        >
-                          Upvote
-                        </button>
-                        <button
-                          className="btn"
-                          onClick={ _this.handleDownvote.bind(this, posts[key], key) }
-                          type="button"
-                        >
-                          Downvote
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+                  <Card>
+                    <CardHeader onClick={ (e) => _this.toggle(key) }>
+                      <h3>
+                        Header
+                      </h3>
+                    </CardHeader>
+                    <Collapse isOpen={_this.state.collapse[key]}>
+                      <CardBody>
+                        <CardText>{ posts[key].title }</CardText>
+                      </CardBody>
+                    </Collapse>
+                  </Card>
                   <br/>
                 </div>
               );

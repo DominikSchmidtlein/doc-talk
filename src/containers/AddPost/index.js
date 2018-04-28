@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+
 
 class AddPost extends Component {
   constructor() {
@@ -34,19 +36,37 @@ class AddPost extends Component {
 
   render() {
     return (
-      <div className="AddPost">
-        <input 
-          type="text" 
-          placeholder="Write the title of your post" 
-          onChange={ this.handleChange } 
-          value={ this.state.title }
-        />
-        <button 
-          type="submit" 
-          onClick={ this.handleSubmit }
-        >
-          Submit
-        </button>
+      <div className="container">
+        <div className="AddPost">
+          <Form>
+           <FormGroup>
+              <Label for="message">Message</Label>
+              <Input
+                type="textarea"
+                name="text"
+                id="message"
+                placeholder="Write your message..." 
+                onChange={ this.handleChange } 
+                value={ this.state.title } />
+            </FormGroup>
+            <FormGroup check>
+              <Label check>
+                <Input
+                  type="checkbox"
+                  onChange={this.handleCheck}
+                  defaultChecked={this.state.checked} />{' '}
+                Tag 1
+              </Label>
+            </FormGroup>
+            <Button 
+              type="submit"
+              color="success"
+              onClick={ this.handleSubmit }
+            >
+              Submit
+            </Button>
+          </Form>
+        </div>
       </div>
     );
   }
