@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, InputGroup, InputGroupAddon, Container, Row, Col } from 'reactstrap';
 import { Checkbox, CheckboxGroup } from 'react-checkbox-group';
 
 
@@ -31,7 +31,7 @@ class AddPost extends Component {
     e.preventDefault();
 
     this.props.firebase.ref('posts').push({
-      title: this.state.title,  
+      title: this.state.title,
       tags: Object.assign({}, this.state.tags),
       support: this.state.support
     });
@@ -49,55 +49,61 @@ class AddPost extends Component {
     return (
       <Container>
         <div className="AddPost">
-          <Form>
-           <FormGroup>
-              <Label for="message">Message</Label>
-              <Input
-                type="textarea"
-                name="text"
-                id="message"
-                placeholder="Write your message..."
-                onChange={ this.handleChange }
-                value={ this.state.title } />
-            </FormGroup>
-            <Row>
-              <Col xs="3">
-                <CheckboxGroup name="tags" value={this.state.tags} onChange={this.handleCheck}>
-                  <Checkbox value="#upliftingnews" /><label>#upliftingnews</label><br/>
-                  <Checkbox value="#pride" /><label> #pride</label><br/>
-                  <Checkbox value="#gratitude" /><label> #gratitude</label>
-                </CheckboxGroup>
-              </Col>
-              <Col xs="3">
-                <CheckboxGroup name="tags" value={this.state.tags} onChange={this.handleCheck}>
-                  <Checkbox value="#feelingmindful" /><label> #feelingmindful</label><br/>
-                  <Checkbox value="#putasmileonmyface" /><label> #putasmileonmyface</label><br/>
-                  <Checkbox value="#worklifebalance" /><label> #worklifebalance</label>
-                </CheckboxGroup>
-              </Col>
-              <Col xs="3">
-                <CheckboxGroup name="tags" value={this.state.tags} onChange={this.handleCheck}>
-                  <Checkbox value="#dealingwithdeath" /><label> #dealingwithdeath</label><br/>
-                  <Checkbox value="#getthisoffmychest" /><label> #getthisoffmychest</label><br/>
-                  <Checkbox value="#support" /><label> #support</label>
-                </CheckboxGroup>
-              </Col>
-              <Col xs="3">
-                <CheckboxGroup name="tags" value={this.state.tags} onChange={this.handleCheck}>
-                  <Checkbox value="#feelingisolated" /><label> #feelingisolated</label><br/>
-                  <Checkbox value="#feelingburnout" /><label> #feelingburnout</label><br/>
-                  <Checkbox value="#cantsleep" /><label> #cantsleep</label>
-                </CheckboxGroup>
-              </Col>
-            </Row>
-            <Button
-              type="submit"
-              color="success"
-              onClick={ this.handleSubmit }
-            >
-              Submit
-            </Button>
-          </Form>
+          <Col sm="12" md={{ size: 8, offset: 2 }}>
+            <Form>
+             <FormGroup>
+                <InputGroup>
+                <Input
+                  style={{height: '200px'}}
+                  type="textarea"
+                  name="text"
+                  id="message"
+                  placeholder="Share your story..."
+                  onChange={ this.handleChange }
+                  value={ this.state.title } />
+                  <InputGroupAddon addonType="append">
+                  <Button
+                    type="submit"
+                    color="success"
+                    onClick={ this.handleSubmit }
+                  >
+                    Submit
+                  </Button>
+                  </InputGroupAddon>
+                  </InputGroup>
+              </FormGroup>
+              <Row>
+                <Col xs="3">
+                  <CheckboxGroup name="tags" value={this.state.tags} onChange={this.handleCheck}>
+                    <Checkbox value="#upliftingnews" /><label><font size="2"> #upliftingnews</font></label><br/>
+                    <Checkbox value="#pride" /><label><font size="2"> #pride</font></label><br/>
+                    <Checkbox value="#gratitude" /><label><font size="2"> #gratitude</font></label>
+                  </CheckboxGroup>
+                </Col>
+                <Col xs="3">
+                  <CheckboxGroup name="tags" value={this.state.tags} onChange={this.handleCheck}>
+                    <Checkbox value="#feelingmindful" /><label><font size="2"> #feelingmindful</font></label><br/>
+                    <Checkbox value="#putasmileonmyface" /><label><font size="2"> #putasmileonmyface</font></label><br/>
+                    <Checkbox value="#worklifebalance" /><label><font size="2"> #worklifebalance</font></label>
+                  </CheckboxGroup>
+                </Col>
+                <Col xs="3">
+                  <CheckboxGroup name="tags" value={this.state.tags} onChange={this.handleCheck}>
+                    <Checkbox value="#dealingwithdeath" /><label><font size="2"> #dealingwithdeath</font></label><br/>
+                    <Checkbox value="#getthisoffmychest" /><label><font size="2"> #getthisoffmychest</font></label><br/>
+                    <Checkbox value="#support" /><label><font size="2"> #support</font></label>
+                  </CheckboxGroup>
+                </Col>
+                <Col xs="3">
+                  <CheckboxGroup name="tags" value={this.state.tags} onChange={this.handleCheck}>
+                    <Checkbox value="#feelingisolated" /><label><font size="2"> #feelingisolated</font></label><br/>
+                    <Checkbox value="#feelingburnout" /><label><font size="2"> #feelingburnout</font></label><br/>
+                    <Checkbox value="#cantsleep" /><label><font size="2"> #cantsleep</font></label>
+                  </CheckboxGroup>
+                </Col>
+              </Row>
+            </Form>
+          </Col>
         </div>
       </Container>
     );

@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-// import { AppRegistry, View, Image } from 'react-native';
-
-
 import * as firebase from "firebase";
 import './main.css';
 import config from './firebase-config';

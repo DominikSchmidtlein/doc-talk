@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Badge, Button, Card, CardBody, CardHeader, CardText, CardFooter } from 'reactstrap';
-
+import { Badge, Button, Card, CardBody, CardHeader, CardText, CardFooter, Col, Container, FormGroup, Input, Row } from 'reactstrap';
+import './main.css';
 
 class Posts extends Component {
   handleSupport = (post, key) => {
@@ -28,41 +28,53 @@ class Posts extends Component {
     }
 
     return (
-      <div className="container">
-          <Button color="primary" href="/add-post">New Post</Button>
+      <Container>
         <div className="Posts">
-          <br/>
-          { Object.keys(posts).map(function(key) {
-              let tags = posts[key].tags || [];
-              return (
-                <div key={key}>
-                  <Card>
-                    <CardHeader>
-                      {tags.map(function(keyTag, i) {
-                        return (<h7 key={i}><Badge color="secondary">{keyTag}</Badge>&nbsp;</h7>)
-                      })}
-                    </CardHeader>
-                    <CardBody>
-                      <CardText>{ posts[key].title }</CardText>
-                    </CardBody>
-                    <CardFooter>
-                      <div>
-                        <Button size="sm">Flag</Button>{' '}
-                        <Button size="sm">Read Similar</Button>{' '}
-                        <Button
-                          size="sm"
-                          onClick={ _this.handleSupport.bind(this, posts[key], key) }>
-                          Show Support</Button>
-                        <span className="float-right">Support: { posts[key].support }</span>
-                      </div>
-                    </CardFooter>
-                  </Card>
-                  <br/>
-                </div>
-              );
-          })}
+          <Row>
+            <Col sm="12" md={{ size: 8, offset: 2 }}>
+              <FormGroup>
+                <a href="/add-post">
+                  <Input
+                    type="add_post"
+                    name="text"
+                    id="post_texts"
+                    placeholder="Share your story..."/>
+                </a>
+              </FormGroup>
+              <br/>
+              { Object.keys(posts).map(function(key) {
+                  let tags = posts[key].tags || [];
+                  return (
+                    <div key={key}>
+                      <Card>
+                        <CardHeader>
+                          {tags.map(function(keyTag, i) {
+                            return (<h7 key={i}><Badge color="secondary">{keyTag}</Badge>&nbsp;</h7>)
+                          })}
+                        </CardHeader>
+                        <CardBody>
+                          <CardText>{ posts[key].title }</CardText>
+                        </CardBody>
+                        <CardFooter>
+                          <div>
+                            <Button size="sm">Flag</Button>{' '}
+                            <Button size="sm">Read Similar</Button>{' '}
+                            <Button
+                              size="sm"
+                              onClick={ _this.handleSupport.bind(this, posts[key], key) }>
+                              Show Support</Button>
+                            <span className="float-right">Support: { posts[key].support }</span>
+                          </div>
+                        </CardFooter>
+                      </Card>
+                      <br/>
+                    </div>
+                  );
+              })}
+            </Col>
+          </Row>
         </div>
-      </div>
+      </Container>
     );
   }
 }
