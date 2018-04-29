@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import * as firebase from "firebase";
+// import { AppRegistry, View, Image } from 'react-native';
 
+
+import * as firebase from "firebase";
+import './main.css';
 import config from './firebase-config';
 
 class App extends Component {
@@ -32,7 +35,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>DocTalk</h1>
+        <img className="logo" src={require('../../images/Rectangle.png')}/>
         {this.props.children && React.cloneElement(this.props.children, {
           // https://github.com/ReactTraining/react-router/blob/v3/examples/passing-props-to-children/app.js#L56-L58
           firebase: firebase.database(),
