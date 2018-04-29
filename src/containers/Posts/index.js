@@ -42,7 +42,7 @@ class Posts extends Component {
                 </a>
               </FormGroup>
               <br/>
-              { Object.keys(posts).map(function(key) {
+              { Object.keys(posts).reverse().map(function(key) {
                   let tags = posts[key].tags || [];
                   return (
                     <div key={key}>
