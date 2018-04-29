@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText, Container, Row, Col } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap';
 import { Checkbox, CheckboxGroup } from 'react-checkbox-group';
 
 
@@ -13,7 +13,8 @@ class AddPost extends Component {
 
   state = {
     title: '',
-    tags: []
+    tags: [],
+    support: 0
   };
 
   handleChange = (e) => {
@@ -31,13 +32,17 @@ class AddPost extends Component {
     
     this.props.firebase.ref('posts').push({
       title: this.state.title,  
-      tags: Object.assign({}, this.state.tags)
+      tags: Object.assign({}, this.state.tags),
+      support: this.state.support
     });
 
     this.setState({
       title: '',
-      tags: []
+      tags: [],
+      support: 0
     });
+
+    window.location = window.location.href.split('add-post')[0];
   }
 
   render() {
@@ -58,30 +63,30 @@ class AddPost extends Component {
             <Row>
               <Col xs="3">
                 <CheckboxGroup name="tags" value={this.state.tags} onChange={this.handleCheck}>
-                  <Checkbox value="tag1" /><label> Tag1</label><br/>
-                  <Checkbox value="tag2" /><label> Tag2</label><br/>
-                  <Checkbox value="tag3" /><label> Tag3</label>
+                  <Checkbox value="#upliftingnews" /><label>#upliftingnews</label><br/>
+                  <Checkbox value="#pride" /><label> #pride</label><br/>
+                  <Checkbox value="#gratitude" /><label> #gratitude</label>
                 </CheckboxGroup>
               </Col>
               <Col xs="3">
                 <CheckboxGroup name="tags" value={this.state.tags} onChange={this.handleCheck}>
-                  <Checkbox value="tag4" /><label> Tag4</label><br/>
-                  <Checkbox value="tag5" /><label> Tag5</label><br/>
-                  <Checkbox value="tag6" /><label> Tag6</label>
+                  <Checkbox value="#feelingmindful" /><label> #feelingmindful</label><br/>
+                  <Checkbox value="#putasmileonmyface" /><label> #putasmileonmyface</label><br/>
+                  <Checkbox value="#worklifebalance" /><label> #worklifebalance</label>
                 </CheckboxGroup>
               </Col>
               <Col xs="3">
                 <CheckboxGroup name="tags" value={this.state.tags} onChange={this.handleCheck}>
-                  <Checkbox value="tag7" /><label> Tag7</label><br/>
-                  <Checkbox value="tag8" /><label> Tag8</label><br/>
-                  <Checkbox value="tag9" /><label> Tag9</label>
+                  <Checkbox value="#dealingwithdeath" /><label> #dealingwithdeath</label><br/>
+                  <Checkbox value="#getthisoffmychest" /><label> #getthisoffmychest</label><br/>
+                  <Checkbox value="#support" /><label> #support</label>
                 </CheckboxGroup>
               </Col>
               <Col xs="3">
                 <CheckboxGroup name="tags" value={this.state.tags} onChange={this.handleCheck}>
-                  <Checkbox value="tag10" /><label> Tag10</label><br/>
-                  <Checkbox value="tag11" /><label> Tag11</label><br/>
-                  <Checkbox value="tag12" /><label> Tag12</label>
+                  <Checkbox value="#feelingisolated" /><label> #feelingisolated</label><br/>
+                  <Checkbox value="#feelingburnout" /><label> #feelingburnout</label><br/>
+                  <Checkbox value="#cantsleep" /><label> #cantsleep</label>
                 </CheckboxGroup>
               </Col>
             </Row>
