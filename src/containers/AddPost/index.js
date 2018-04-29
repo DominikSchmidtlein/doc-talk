@@ -29,7 +29,7 @@ class AddPost extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    
+
     this.props.firebase.ref('posts').push({
       title: this.state.title,  
       tags: Object.assign({}, this.state.tags),
@@ -56,8 +56,8 @@ class AddPost extends Component {
                 type="textarea"
                 name="text"
                 id="message"
-                placeholder="Write your message..." 
-                onChange={ this.handleChange } 
+                placeholder="Write your message..."
+                onChange={ this.handleChange }
                 value={ this.state.title } />
             </FormGroup>
             <Row>
@@ -90,7 +90,7 @@ class AddPost extends Component {
                 </CheckboxGroup>
               </Col>
             </Row>
-            <Button 
+            <Button
               type="submit"
               color="success"
               onClick={ this.handleSubmit }
