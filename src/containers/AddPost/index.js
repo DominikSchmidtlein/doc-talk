@@ -42,14 +42,12 @@ class AddPost extends Component {
       support: 0
     });
 
-    window.location = window.location.href.split('add-post')[0];
+    this.props.handle();
   }
 
   render() {
     return (
-      <Container>
         <div className="AddPost">
-          <Col sm="12" md={{ size: 8, offset: 2 }}>
             <Form>
              <FormGroup>
                 <InputGroup>
@@ -103,9 +101,7 @@ class AddPost extends Component {
                 </Col>
               </Row>
             </Form>
-          </Col>
         </div>
-      </Container>
     );
   }
 }
